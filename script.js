@@ -69,6 +69,19 @@ document.addEventListener('DOMContentLoaded', () => {
             itemList.appendChild(li);
         });
 
+        // Re-apply filter after re-rendering
+        const statusFilter = document.getElementById('status-filter');
+        if (statusFilter && statusFilter.value !== 'all') {
+            const value = statusFilter.value;
+            Array.from(itemList.children).forEach(li => {
+                if (li.className === value) {
+                    li.style.display = '';
+                } else {
+                    li.style.display = 'none';
+                }
+            });
+        }
+
         // Function to toggle wishlist status
         window.toggleWishlist = function(itemId) {
             const item = items.find(item => item.id === itemId);
@@ -228,6 +241,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         li.style.display = 'none';
                     }
                 });
+            });
+        }
+
+        // Add reload button functionality
+        const reloadBtn = document.getElementById('reload-btn');
+        if (reloadBtn) {
+            reloadBtn.addEventListener('click', () => {
+                fetchItemsFromJson();
             });
         }
     }
