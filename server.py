@@ -10,11 +10,27 @@ JSON_FILE = 'wantedList.json'
 class RequestHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         # Handle normal GET requests (serving static files)
+        self.send_response(200)
+        self.send_header('Access-Control-Allow-Origin', '*')
         return http.server.SimpleHTTPRequestHandler.do_GET(self)
+    
+    def do_OPTIONS(self):
+        # Handle preflight CORS requests
+        self.send_response(200)
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type')
+        self.end_headers()
     
     def do_POST(self):
         # Handle POST requests to update the JSON file
         if self.path == '/update_json':
+            # Add CORS headers
+            self.send_response(200)
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            
             content_length = int(self.headers['Content-Length'])
             post_data = self.rfile.read(content_length)
             
@@ -43,16 +59,10 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
                     json.dump(updated_items, f, indent=4)
                 
                 # Send a success response
-                self.send_response(200)
-                self.send_header('Content-type', 'application/json')
-                self.end_headers()
                 self.wfile.write(json.dumps({'success': True}).encode('utf-8'))
                 print(f"Updated {JSON_FILE} successfully with {len(updated_items)} items")
             except Exception as e:
                 # Send an error response
-                self.send_response(500)
-                self.send_header('Content-type', 'application/json')
-                self.end_headers()
                 self.wfile.write(json.dumps({'success': False, 'error': str(e)}).encode('utf-8'))
                 print(f"Error updating {JSON_FILE}: {str(e)}")
         else:

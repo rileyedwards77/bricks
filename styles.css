@@ -112,6 +112,18 @@ button:hover {
     background-color: white;
 }
 
+.received-btn {
+    border: 1px solid #FF9800;
+    color: #FF9800;
+    background-color: white;
+}
+
+.used-btn {
+    border: 1px solid #9C27B0;
+    color: #9C27B0;
+    background-color: white;
+}
+
 .wishlist-btn.active {
     background-color: #4CAF50;
     color: white;
@@ -119,6 +131,16 @@ button:hover {
 
 .ordered-btn.active {
     background-color: #2196F3;
+    color: white;
+}
+
+.received-btn.active {
+    background-color: #FF9800;
+    color: white;
+}
+
+.used-btn.active {
+    background-color: #9C27B0;
     color: white;
 }
 
