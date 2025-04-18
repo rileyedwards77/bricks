@@ -1,0 +1,130 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    border-left: 5px solid #ccc;
+    transition: all 0.3s ease;
+}
+
+li.wishlisted {
+    border-left: 5px solid #4CAF50;
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+li.ordered {
+    border-left: 5px solid #2196F3;
+    background-color: rgba(33, 150, 243, 0.1);
+}
+
+li.received {
+    border-left: 5px solid #FF9800;
+    background-color: rgba(255, 152, 0, 0.1);
+}
+
+li.used {
+    border-left: 5px solid #9C27B0;
+    background-color: rgba(156, 39, 176, 0.1);
+}
+
+.item-id {
+    flex: 0.5;
+    margin-right: 10px;
+}
+
+.item-description {
+    flex: 1.5;
+    margin-right: 10px;
+}
+
+.item-qty {
+    flex: 0.5;
+    margin-right: 10px;
+    color: #555;
+    font-weight: bold;
+}
+
+.item-remarks {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.item-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.status-buttons {
+    display: flex;
+    margin-top: 5px;
+}
+
+.status-buttons button {
+    margin-right: 5px;
+}
+
+button {
+    margin-left: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background-color: #e8e8e8;
+}
+
+.copy-id, .copy-remarks {
+    background-color: #f8f8f8;
+}
+
+.wishlist-btn {
+    border: 1px solid #4CAF50;
+    color: #4CAF50;
+    background-color: white;
+}
+
+.ordered-btn {
+    border: 1px solid #2196F3;
+    color: #2196F3;
+    background-color: white;
+}
+
+.wishlist-btn.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.ordered-btn.active {
+    background-color: #2196F3;
+    color: white;
+}
+
+.filter-container {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
